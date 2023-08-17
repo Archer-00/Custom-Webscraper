@@ -21,11 +21,20 @@ password = "{PASSWORD}"
 # Path to the Edge WebDriver executable
 webdriver_path = r"C:\Users\{USER}\Downloads\edgedriver_win32\msedgedriver.exe"
 
+# Directory for downloading files
+download_directory = rf"C:\Users\{USER}\Downloads\{user_name}"
+
+# Destination folder for downloaded files
+destination_folder = rf"C:\Users\{USER}\Downloads\{user_name}"
+
+# Source folder for existing files
+source_folder = r"C:\Users\{USER}\Downloads"
+
 # Portal URL to Login
 login_url = "https://{WEBSITE_URL}"
 
 # Base URL for the user list
-base_url = "https://{WEBSITE_URL}/Web/Users/"
+base_url = f"https://{WEBSITE_URL}/Web/Users/"
 
 ################################################
 ################################################
@@ -94,7 +103,6 @@ while True:
 
             # Loop through download links to download files
             for download_link in download_links:
-                download_directory = rf"C:\Users\L3x_\Downloads\{user_name}"
                 if not os.path.exists(download_directory):
                     os.makedirs(download_directory)
 
@@ -103,10 +111,8 @@ while True:
                 driver.switch_to.window(driver.window_handles[-1])
                 time.sleep(5)
 
-                source_folder = r"C:\Users\L3x_\Downloads"
-                destination_folder = rf"C:\Users\L3x_\Downloads\{user_name}"
                 time.sleep(0.5)
-                get_last_created_file(source_folders, destination_folder)
+                get_last_created_file(source_folder, destination_folder)
 
                 driver.close()
                 driver.switch_to.window(driver.window_handles[0])
